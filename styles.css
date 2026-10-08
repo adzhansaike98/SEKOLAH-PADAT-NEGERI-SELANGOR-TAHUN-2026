@@ -512,7 +512,7 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
  content:""!important;display:block!important;position:absolute!important;
  top:0!important;right:0!important;bottom:0!important;
  width:min(43vw,570px)!important;max-width:none!important;height:100%!important;
- background-image:url("https://raw.githubusercontent.com/geospatialpms-glitch/Tapak-Perkuburan-Negeri-Selangor/main/header-skyline.png")!important;
+ background-image:url("assets/skyline-transparent.webp")!important;
  background-repeat:no-repeat!important;background-position:right center!important;
  background-size:auto 100%!important;opacity:1!important;
  pointer-events:none!important;z-index:0!important;
@@ -563,3 +563,6 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
  .topbar h1{font-size:clamp(17px,4.2vw,22px)}
  .topbar h1 span{white-space:nowrap;font-size:1.12em}
 }
+
+/* Gambar skyline baharu: hanya ikon berlatar telus, tanpa gelombang atau kotak. */
+.topbar:before{background-size:auto 100%!important;background-position:right bottom!important;background-repeat:no-repeat!important}
