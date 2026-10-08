@@ -76,3 +76,52 @@ th{background:#fff1e2;color:#6a4b37}td{border-bottom-color:#f4ece4}
 footer strong{color:#d34432}
 @media(max-width:1250px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:670px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-number{font-size:21px}.topbar:after{display:none}}
+
+
+/* Infografik Komposisi Sekolah dan Status Geran — tema dashboard merah/jingga */
+.compact-panel:has(#typeChart),.compact-panel:has(#grantChart){
+  background:linear-gradient(150deg,#fff 0%,#fffaf5 100%);
+  border:1px solid #edd8c3;
+  box-shadow:0 5px 18px rgba(162,88,35,.08);
+}
+.compact-panel:has(#typeChart) .panel-head,
+.compact-panel:has(#grantChart) .panel-head{
+  background:linear-gradient(90deg,#fff3eb,#fffdf9);
+  border-bottom:1px solid #f3dfd0;
+}
+.compact-panel:has(#typeChart) .donut-wrap,
+.compact-panel:has(#grantChart) .donut-wrap{
+  min-height:195px;gap:13px;padding:16px 15px 19px;
+  justify-content:space-between;
+}
+.compact-panel:has(#typeChart) .donut-wrap canvas,
+.compact-panel:has(#grantChart) .donut-wrap canvas{
+  width:136px!important;height:136px!important;
+  filter:drop-shadow(0 5px 9px rgba(151,85,46,.12));
+}
+.compact-panel:has(#typeChart) .mini-legend,
+.compact-panel:has(#grantChart) .mini-legend{font-size:11px}
+.compact-panel:has(#typeChart) .legend-item,
+.compact-panel:has(#grantChart) .legend-item{
+  margin:8px 0;padding:9px 10px;border-radius:9px;
+  background:white;border:1px solid #f4e6da;
+  box-shadow:0 2px 5px rgba(77,44,30,.035);
+  align-items:center;flex-wrap:wrap;
+}
+.compact-panel:has(#typeChart) .legend-item b,
+.compact-panel:has(#grantChart) .legend-item b{
+  color:#26344f;font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums;
+}
+.compact-panel:has(#typeChart) .legend-item small,
+.compact-panel:has(#grantChart) .legend-item small{
+  color:#9b6450;font-size:10px;
+}
+.compact-panel:has(#typeChart) .swatch,
+.compact-panel:has(#grantChart) .swatch{
+  width:10px;height:10px;margin-right:7px;vertical-align:-1px;
+  box-shadow:0 0 0 3px #fff2e8;
+}
+@media(max-width:670px){
+  .compact-panel:has(#typeChart) .donut-wrap canvas,
+  .compact-panel:has(#grantChart) .donut-wrap canvas{width:126px!important;height:126px!important}
+}
