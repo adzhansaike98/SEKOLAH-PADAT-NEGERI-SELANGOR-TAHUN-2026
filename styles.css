@@ -384,3 +384,34 @@ footer strong{color:#d34432}
  .three-summary-row>.detail-panel{min-height:0;height:auto}
  .three-summary-row>.compact-panel #facilities{gap:9px}
 }
+
+/* Ringkasan Data Penting: angka dan label besar, ikon premium */
+.three-summary-row .detail-panel .detail-card{
+ position:relative;justify-content:center;
+ padding:20px 20px 18px!important;gap:6px;
+ overflow:hidden;
+}
+.three-summary-row .detail-panel .summary-stat-icon{
+ position:absolute;right:17px;top:15px;
+ width:44px;height:44px;display:grid;place-items:center;
+ border-radius:13px;background:rgba(255,255,255,.76);
+ border:1px solid rgba(255,255,255,.85);
+ box-shadow:0 3px 10px rgba(60,45,30,.06);
+ font-size:24px;line-height:1;
+}
+.three-summary-row .detail-panel .detail-card strong{
+ display:block;font-size:clamp(32px,2.8vw,46px)!important;
+ font-weight:800;line-height:1.05;letter-spacing:-1.2px;
+ margin:12px 0 3px;font-variant-numeric:tabular-nums;
+}
+.three-summary-row .detail-panel .detail-card small{
+ display:block;font-size:clamp(12px,1vw,15px)!important;
+ font-weight:700;line-height:1.35;color:#3a4b66;
+}
+.three-summary-row .detail-panel .detail-card.meeting{background:#fff0e3}
+.three-summary-row .detail-panel .detail-card.meeting strong{color:#d84b27}
+@media(max-width:750px){
+ .three-summary-row .detail-panel .detail-card{min-height:150px}
+ .three-summary-row .detail-panel .detail-card strong{font-size:35px!important}
+ .three-summary-row .detail-panel .detail-card small{font-size:12px!important}
+}
