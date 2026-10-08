@@ -136,11 +136,11 @@ function renderFacilities(){const items=[['Bilik Darjah Perdana','BD Perdana'],[
 /* Logo rasmi boleh diletakkan dalam assets/pbt/ tanpa ubah kod.
    Singkatan dipaparkan apabila logo rasmi belum tersedia. */
 const pbtLogoMap={
- 'Majlis Bandaraya Diraja Klang':['MBDK','assets/pbt/mbdk.png'],
- 'Majlis Perbandaran Kajang':['MPKj','assets/pbt/mpkj.png'],
- 'Majlis Perbandaran Selayang':['MPS','assets/pbt/mps.png'],
- 'Majlis Perbandaran Kuala Langat':['MPKL','assets/pbt/mpkl.png'],
- 'Majlis Perbandaran Sepang':['MPSepang','assets/pbt/mpsepang.png']
+ 'Majlis Bandaraya Diraja Klang':['MBDK','assets/pbt/mbdk.webp'],
+ 'Majlis Perbandaran Kajang':['MPKj','assets/pbt/mpkj.webp'],
+ 'Majlis Perbandaran Selayang':['MPS','assets/pbt/mps.webp'],
+ 'Majlis Perbandaran Kuala Langat':['MPKL','assets/pbt/mpkl.webp'],
+ 'Majlis Perbandaran Sepang':['MPSepang','assets/pbt/mpsepang.webp']
 };
 function renderRanks(){
  const list=sortedCounts(count(filtered,'PBT')).slice(0,5),max=list[0]?.[1]||1;
