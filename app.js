@@ -153,7 +153,7 @@ function renderFacilities(){
   ['Bilik Darjah Perdana','BD Perdana','🏫','red'],
   ['Bilik Darjah PPKI','BD PPKI','♿','orange'],
   ['Tandas','Tandas','🚻','yellow'],
-  ['DTSB','DTSB','🛠️','green'],
+  ['DTSB','DTSB','🏛️','green'],
   ['Jenis Aliran','Jenis Aliran','📘','blue']
  ];
  $('facilities').innerHTML=items.map(([label,key,icon,color])=>
