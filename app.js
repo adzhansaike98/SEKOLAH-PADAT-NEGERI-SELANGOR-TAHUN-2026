@@ -51,8 +51,19 @@ function setup(){
 function getFiltered(){const d=$('fDistrict').value,pbt=$('fPBT').value,j=$('fJenis').value,g=$('fGeran').value,p=$('fPemutihan').value,q=normalize($('search').value).trim();return all.filter(r=>(!d||r.DAERAH===d)&&(!pbt||r.PBT===pbt)&&(!j||r['SK/SMK']===j)&&(!g||String(r['Status Geran']).trim()===g)&&(!p||normalize(r.Pemutihan).trim()===p)&&(!q||[r.nama,r.DAERAH,r.PBT,r['MUKIM / PEKAN / BANDAR'],r['NO LOT/PT']].some(v=>normalize(v).includes(q))))}
 function render(){filtered=getFiltered();renderKPIs();renderMap();renderGraphs();renderFacilities();renderRanks();renderNotes();renderTable()}
 function renderKPIs(){const c=filtered.filter(coords).length;const figures=[['🏫','Jumlah Sekolah',filtered.length,'Rekod dalam penapis'],['📍','Daerah Terlibat',new Set(filtered.map(r=>r.DAERAH)).size,'Daripada 9 daerah Selangor'],['🎓','Sekolah Rendah (SK)',filtered.filter(r=>r['SK/SMK']==='SK').length,'Kategori sekolah'],['🏛','Sekolah Menengah (SMK)',filtered.filter(r=>r['SK/SMK']==='SMK').length,'Kategori sekolah'],['🛠','Perlu Pemutihan',filtered.filter(r=>normalize(r.Pemutihan)==='perlu').length,'Sekolah ditanda perlu']];$('kpis').innerHTML=figures.map(([icon,label,value,sub])=>`<article class="kpi"><span class="kpi-icon">${icon}</span><div><div class="kpi-label">${label}</div><div class="kpi-number">${fmt(value)}</div><div class="kpi-sub">${sub}</div></div></article>`).join('');$('coordBadge').textContent=c+' / '+filtered.length+' koordinat';}
-function renderMap(){if(group)map.removeLayer(group);group=showCluster?L.markerClusterGroup({showCoverageOnHover:false,maxClusterRadius:38}):L.layerGroup();for(const r of filtered.filter(coords)){
- const color=r['SK/SMK']==='SMK'?'#f97316':'#2563eb'; const icon=L.divIcon({className:'school-map-icon',html:`<span style="display:block;width:14px;height:14px;border-radius:50%;background:${color};border:2px solid white;box-shadow:0 0 0 1px ${color}55,0 2px 5px #0003"></span>`,iconSize:[14,14],iconAnchor:[7,7]}); const marker=L.marker([r.latitude,r.longitude],{icon});
+function renderMap(){if(group)map.removeLayer(group);group=showCluster?L.markerClusterGroup({
+ showCoverageOnHover:false,maxClusterRadius:38,
+ iconCreateFunction(cluster){
+  const count=cluster.getChildCount();
+  const level=count>=15?'large':count>=6?'medium':'small';
+  const size=count>=15?54:count>=6?48:43;
+  return L.divIcon({className:'school-cluster school-cluster-'+level,
+   html:`<span class="school-cluster-inner"><span class="school-cluster-count">${count}</span></span>`,
+   iconSize:[size,size],iconAnchor:[size/2,size/2]});
+ }
+}):L.layerGroup();for(const r of filtered.filter(coords)){
+ const isSMK=r['SK/SMK']==='SMK';
+ const icon=L.divIcon({className:'school-map-icon',html:`<span class="school-pin ${isSMK?'school-pin-smk':'school-pin-sk'}"><span class="school-pin-symbol" aria-hidden="true">${isSMK?'🎓':'🏫'}</span></span>`,iconSize:[34,40],iconAnchor:[17,39],popupAnchor:[0,-35]}); const marker=L.marker([r.latitude,r.longitude],{icon});
  const google=`https://www.google.com/maps?q=${encodeURIComponent(r.latitude+','+r.longitude)}`;
  const detail=`<strong>${safe(r.nama||'Nama tidak direkod')}</strong><br/>Daerah: ${safe(r.DAERAH)}<br/>Jenis: ${safe(r['SK/SMK'])}<br/>PBT: ${safe(r.PBT)}<br/>Status Geran: ${safe(r['Status Geran'])}<br/>Pemutihan: ${safe(r.Pemutihan)}<br/>Latitude: ${safe(r.latitude)}<br/>Longitude: ${safe(r.longitude)}<br/><a target="_blank" rel="noopener noreferrer" href="${google}">Buka Google Maps ↗</a>`;
  marker.bindPopup(detail);group.addLayer(marker);
