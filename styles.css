@@ -463,24 +463,45 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
  html{scroll-padding-top:68px}
 }
 
-/* Logo SUO di kiri tajuk dashboard sekolah */
-.topbar .brand{display:flex;align-items:center;gap:17px;min-width:0}
-.topbar .suo-header-logo{display:block;flex:0 0 auto;width:88px;height:88px;object-fit:contain;background:#fff;border-radius:5px}
+
+/* Header Selangor SUO: padanan reka bentuk krim, putih dan emas */
+.topbar{
+ position:relative;isolation:isolate;overflow:hidden;
+ display:flex;align-items:center;justify-content:space-between;gap:18px;
+ min-height:116px;padding:12px 18px 12px 8px!important;
+ background:linear-gradient(180deg,#fffdf9 0%,#fff8ef 100%)!important;
+ border-top:1px solid #eadbc8;border-bottom:1px solid #efdcc7;box-shadow:none!important;
+}
+.topbar:after{content:none!important;display:none!important}
+.topbar:before{
+ content:"";position:absolute;top:0;right:0;bottom:0;width:min(47%,560px);
+ background:url("https://raw.githubusercontent.com/geospatialpms-glitch/Tapak-Perkuburan-Negeri-Selangor/main/header-skyline.png") right center / contain no-repeat;
+ z-index:0;pointer-events:none;
+}
+.topbar .brand{position:relative;z-index:2;display:flex;align-items:center;gap:18px;margin-left:0!important;min-width:0;flex:1 1 auto;max-width:760px}
+.topbar .suo-header-logo{display:block;width:86px;height:86px;object-fit:contain;flex:0 0 auto;background:transparent!important;border-radius:0!important;box-shadow:none!important}
 .topbar .brand>div{min-width:0}
-@media(max-width:670px){.topbar .suo-header-logo{width:58px;height:58px}.topbar .brand{gap:10px}}
-
-/* Header: logo SUO bermula dari hujung kiri skrin */
-.topbar{padding-left:12px!important;padding-right:24px!important}
-.topbar .brand{margin-left:0!important;justify-content:flex-start!important}
-@media(max-width:670px){.topbar{padding-left:8px!important;padding-right:10px!important}}
-
-/* Skyline SUO pada hujung kanan header — menggantikan hiasan bulatan */
-.topbar{isolation:isolate;position:relative;min-height:118px;background:#fff!important}
-.topbar:before{content:"";position:absolute;z-index:-1;pointer-events:none;right:0;top:0;bottom:0;
- width:min(39vw,680px);background:url('https://raw.githubusercontent.com/geospatialpms-glitch/Tapak-Perkuburan-Negeri-Selangor/main/header-skyline.png') right center / contain no-repeat}
-.topbar:after{display:none!important;content:none!important}
-.topbar .brand{position:relative;z-index:1}
-.topbar .header-actions{position:relative;z-index:1;margin-right:min(30vw,460px)}
-@media(max-width:1250px){.topbar .header-actions{margin-right:0;background:#fff9}}
-@media(max-width:850px){.topbar:before{width:48vw;opacity:.38}.topbar .brand{max-width:83%}}
-@media(max-width:670px){.topbar{min-height:95px}.topbar:before{width:48vw;opacity:.2}.topbar .brand{max-width:100%}}
+.topbar .eyebrow{margin:0 0 4px;color:#c7661e;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}
+.topbar h1{margin:0 0 6px;color:#16294c;font-size:clamp(26px,2.1vw,34px);line-height:1.08;font-weight:800}
+.topbar h1 span{color:#df4b24}
+.topbar p{margin:0;color:#6c7a90;font-size:13px;line-height:1.35}
+.topbar .header-actions{position:relative;z-index:2;display:flex;align-items:center;gap:12px;margin-right:10px;padding:0;background:transparent!important;box-shadow:none!important}
+.topbar .year,.topbar .dot-online{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 16px;border-radius:12px;border:1px solid #efc79f;background:rgba(255,250,243,.92);color:#c36a20;font-size:13px;font-weight:700;white-space:nowrap;box-shadow:none!important}
+@media(max-width:1100px){
+ .topbar{padding:12px 14px 12px 6px!important}
+ .topbar .brand{gap:14px;max-width:72%}
+ .topbar .suo-header-logo{width:74px;height:74px}
+ .topbar:before{width:40%;opacity:.95}
+ .topbar .header-actions{margin-right:0;gap:8px}
+ .topbar .year,.topbar .dot-online{padding:0 12px;font-size:12px}
+}
+@media(max-width:760px){
+ .topbar{flex-direction:column;align-items:flex-start;gap:10px;min-height:auto;padding:10px 10px 12px 6px!important}
+ .topbar .brand{max-width:100%;gap:10px}
+ .topbar .suo-header-logo{width:58px;height:58px}
+ .topbar .eyebrow{font-size:10px;letter-spacing:1.2px}
+ .topbar h1{font-size:22px}
+ .topbar p{font-size:12px}
+ .topbar .header-actions{margin-right:0;flex-wrap:wrap}
+ .topbar:before{width:52%;opacity:.35}
+}
