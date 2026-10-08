@@ -12,7 +12,17 @@
 <div class="kpis" id="kpis" aria-live="polite"></div>
 <div class="dashboard-grid">
 <section class="panel map-panel"><div class="panel-head"><div><h2>📍 Taburan Lokasi Sekolah Padat</h2><p>Penanda lokasi berdasarkan koordinat sebenar</p></div><span class="chip" id="coordBadge">Koordinat</span></div><div class="boundary-toolbar" aria-label="Paparan sempadan"><label><input type="checkbox" id="showDistrictBoundary" checked/> Sempadan daerah</label><label><input type="checkbox" id="showPBTBoundary"/> Sempadan PBT</label><label><input type="checkbox" id="showSchools" checked/> Lokasi sekolah</label><button class="text-btn" id="fitBoundary">⤢ Papar seluruh Selangor</button></div><div class="map-box"><div id="map" role="application" aria-label="Peta sekolah padat negeri Selangor"></div></div><div class="legend"><span><i style="background:#2563eb"></i> SK</span><span><i style="background:#f97316"></i> SMK</span><span><i style="background:#155e75"></i> Garisan daerah</span><span><i style="background:#f59e0b"></i> Garisan PBT</span><span>🖱 Klik sempadan untuk nama kawasan</span></div><div class="map-footer"><button class="text-btn" id="zoomAll">⤢ Papar semua lokasi</button><button class="text-btn" id="toggleHeat">◉ Paparan kluster: aktif</button></div></section>
-<section class="panel district-panel"><div class="panel-head"><div><h2>📊 Sekolah Mengikut Daerah</h2><p>Bilangan sekolah dalam pilihan penapis</p></div></div><div class="chart-box"><canvas id="districtChart" aria-label="Graf bilangan sekolah mengikut daerah"></canvas></div></section>
+<section class="panel district-panel">
+<div class="panel-head"><div><h2>📊 Sekolah Mengikut Daerah</h2><p>Bilangan sekolah dalam pilihan penapis</p></div></div>
+<div class="project-scope" aria-labelledby="projectScopeTitle">
+<h3 id="projectScopeTitle">📋 SKOP PROJEK</h3>
+<ol class="scope-list">
+<li><span class="scope-text">Penyediaan Bilik Darjah/ Bilik Khas/ Kabin Untuk Proses Pengajaran Dan Pembelajaran Kepada Murid Aliran Perdana Dan Program Pendidikan Khas Integrasi (PPKI) Bagi Menangani Isu Sekolah Padat Menerusi Kaedah Pembinaan Baharu, Ubah Suai Dan Naik Taraf Bangunan Sedia Ada.</span></li>
+<li><span class="scope-text">Penyediaan Kemudahan-kemudahan Lain Yang Berkaitan Meliputi Longkang, Lantai, Laluan Murid Dan Penyediaan Kemudahan Infrastruktur Lain Yang Bersesuaian.</span></li>
+<li><span class="scope-text">Perolehan Perabot, Peralatan Dan Kelengkapan Mengikut Piawai.</span></li>
+</ol></div>
+<div class="chart-box district-chart-box"><canvas id="districtChart" aria-label="Graf bilangan sekolah mengikut daerah"></canvas></div>
+</section>
 <div class="donut-trio" aria-label="Infografik Jenis Sekolah, Status Geran dan Pemutihan">
 <section class="panel compact-panel"><div class="panel-head"><h2>📈 Komposisi Sekolah</h2></div><div class="donut-wrap"><div class="premium-donut-visual"><canvas id="typeChart"></canvas></div><div id="typeLegend" class="mini-legend"></div></div></section>
 <section class="panel compact-panel"><div class="panel-head"><h2>📄 Status Geran</h2></div><div class="donut-wrap"><div class="premium-donut-visual"><canvas id="grantChart"></canvas></div><div id="grantLegend" class="mini-legend"></div></div></section>
