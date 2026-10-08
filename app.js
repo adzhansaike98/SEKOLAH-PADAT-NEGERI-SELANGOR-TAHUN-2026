@@ -36,8 +36,14 @@ function setup(){
  $('showPBTBoundary').onchange=syncLayers;
  $('showSchools').onchange=()=>{schoolLayerEnabled=$('showSchools').checked;syncLayers()};
  $('toggleHeat').onclick=()=>{showCluster=!showCluster;renderMap();$('toggleHeat').textContent='◉ Paparan kluster: '+(showCluster?'aktif':'tidak aktif')};
- map=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([3.2,101.5],9);
- L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19}).addTo(map);
+ map=L.map('map',{zoomControl:true,scrollWheelZoom:true,zoomSnap:0.5,zoomDelta:0.5,wheelPxPerZoomLevel:90,zoomAnimation:true,doubleClickZoom:true,touchZoom:true}).setView([3.2,101.5],9);
+ const streets=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:19});
+ const topo=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles &copy; Esri',maxZoom:19});
+ const imagery=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Imagery &copy; Esri',maxZoom:19});
+ streets.addTo(map);
+ L.control.layers({'Peta Jalan':streets,'Topografi Esri':topo,'Satelit Esri':imagery},null,{position:'topright',collapsed:true}).addTo(map);
+ L.control.scale({imperial:false,metric:true,position:'bottomleft'}).addTo(map);
+ map.scrollWheelZoom.enable();
  initBoundaryLayers();
  setTimeout(()=>map.invalidateSize(),250);
  render();
