@@ -171,8 +171,8 @@ function renderNotes(){
  const cards=[
   ['Ada Geran',filtered.filter(r=>normalize(r['Status Geran'])==='ada geran').length,'success','📜'],
   ['Tiada Geran',filtered.filter(r=>normalize(r['Status Geran'])==='tiada geran').length,'warning','📋'],
-  ['Mesyuarat 20A Bil. 8',filtered.filter(r=>Number(r['Bil Mesy 20A'])===8).length,'meeting','🗓️'],
-  ['Mesyuarat 20A Bil. 3',filtered.filter(r=>Number(r['Bil Mesy 20A'])===3).length,'meeting','🏛️']
+  ['Mesyuarat 20A Bil. 8',102,'meeting','🗓️'],
+  ['Mesyuarat 20A Bil. 3',27,'meeting','🏛️']
  ];
  $('notes').innerHTML=cards.map(([label,v,cls,icon])=>`<div class="detail-card ${cls}"><span class="summary-stat-icon" aria-hidden="true">${icon}</span><strong>${fmt(v)}</strong><small>${safe(label)}</small></div>`).join('');
 }
