@@ -268,3 +268,36 @@ footer strong{color:#d34432}
   max-height:none!important;
  }
 }
+
+/* Panel Top 5 PBT — gaya ranking premium, ketinggian sekata */
+.dashboard-grid>.rank-panel{display:flex;flex-direction:column;min-height:420px}
+.rank-panel #pbtRanking{flex:1;padding:12px 16px 16px}
+.pbt-rank-list{display:grid;grid-template-rows:repeat(5,minmax(0,1fr));gap:9px;height:100%}
+.pbt-rank-card{display:grid;grid-template-columns:30px 50px minmax(0,1fr) 76px;gap:11px;align-items:center;
+  min-height:61px;padding:8px 13px;border:1px solid #f0dfd0;border-radius:12px;
+  background:linear-gradient(100deg,#fffdfa,#fff7ef);box-shadow:0 3px 9px rgba(81,48,24,.045)}
+.pbt-rank-card .rank-order{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;
+  background:#f3eee7;color:#855941;font-size:12px;font-weight:800}
+.pbt-rank-card.rank-tier-1 .rank-order{background:linear-gradient(145deg,#ffcc46,#c98c0b);color:white}
+.pbt-rank-card.rank-tier-2 .rank-order{background:linear-gradient(145deg,#b7c3d0,#7d91a2);color:white}
+.pbt-rank-card.rank-tier-3 .rank-order{background:linear-gradient(145deg,#dfad83,#ac6d43);color:white}
+.pbt-logo-circle{position:relative;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+ background:#fff;border:1px solid #e8d7c8;box-shadow:0 2px 6px rgba(58,38,23,.08);overflow:hidden}
+.pbt-logo-fallback{font-size:10px;font-weight:800;text-align:center;letter-spacing:-.3px;color:#b94d2c}
+.pbt-logo-circle img{position:absolute;inset:0;width:100%;height:100%;padding:4px;object-fit:contain;background:white}
+.pbt-rank-info{display:flex;flex-direction:column;gap:8px;min-width:0}
+.pbt-rank-name{font-size:12px;color:#23324b;font-weight:700;line-height:1.32}
+.pbt-rank-track{height:12px;background:#f6e7da;border-radius:99px;overflow:hidden}
+.pbt-rank-fill{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#db3046,#f36b28,#f8ad24)}
+.pbt-rank-card.rank-tier-1 .pbt-rank-fill{background:linear-gradient(90deg,#d52d41,#fa9320)}
+.pbt-rank-total{font-size:19px;font-weight:800;color:#ae3c25;text-align:right;font-variant-numeric:tabular-nums}
+.pbt-rank-total small{display:block;font-size:9px;color:#8d7768;font-weight:600}
+@media(max-width:670px){
+ .dashboard-grid>.rank-panel{min-height:410px}
+ .rank-panel #pbtRanking{padding:10px}
+ .pbt-rank-card{grid-template-columns:25px 38px minmax(0,1fr) 45px;gap:7px;padding:7px}
+ .pbt-logo-circle{width:37px;height:37px}
+ .pbt-logo-fallback{font-size:8px}
+ .pbt-rank-name{font-size:10px}
+ .pbt-rank-total{font-size:15px}
+}
