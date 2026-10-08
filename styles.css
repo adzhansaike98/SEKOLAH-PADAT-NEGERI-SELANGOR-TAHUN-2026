@@ -76,3 +76,51 @@ th{background:#fff1e2;color:#6a4b37}td{border-bottom-color:#f4ece4}
 footer strong{color:#d34432}
 @media(max-width:1250px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:670px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-number{font-size:21px}.topbar:after{display:none}}
+
+
+/* Header gaya SUO sahaja — sections dashboard kekal */
+.suo-header{
+  height:111px;min-height:111px;box-sizing:border-box;
+  padding:10px 24px;display:flex;align-items:center;
+  background:#fff;position:relative;overflow:hidden;
+  border-top:2px solid #d7d0c3;border-bottom:1px solid #ead9c9;
+  box-shadow:none;
+}
+.suo-header:after{display:none!important}
+.suo-header .brand{position:relative;z-index:2;display:flex;align-items:center;gap:15px;min-width:0}
+.suo-header .suo-logo{
+  display:block;width:85px;height:83px;object-fit:contain;flex:none;
+  padding:0;background:transparent;border-radius:0;box-shadow:none
+}
+.suo-header .brand-copy{min-width:0}
+.suo-header .eyebrow{
+  font-size:11px;letter-spacing:1.25px;color:#d64623;
+  font-weight:800;line-height:1.35;margin:0 0 4px
+}
+.suo-header h1{
+  font-size:clamp(20px,2vw,29px);line-height:1.16;letter-spacing:-.8px;
+  color:#18213c;margin:0 0 6px;font-weight:800;white-space:normal
+}
+.suo-header h1 span{color:inherit}
+.suo-header p{
+  color:#686f7d;font-size:13px;line-height:1.3;margin:0
+}
+.suo-header .suo-skyline{
+  position:absolute;right:0;top:0;bottom:0;width:min(36vw,620px);
+  background-image:url('https://raw.githubusercontent.com/geospatialpms-glitch/Tapak-Perkuburan-Negeri-Selangor/main/header-skyline.png');
+  background-position:right center;background-repeat:no-repeat;background-size:contain;
+  pointer-events:none;z-index:1;
+}
+@media(max-width:1000px){
+  .suo-header .suo-skyline{opacity:.35;width:38vw}
+  .suo-header .brand-copy{max-width:80vw}
+}
+@media(max-width:650px){
+  .suo-header{height:auto;min-height:102px;padding:12px}
+  .suo-header .brand{gap:9px}
+  .suo-header .suo-logo{width:62px;height:65px}
+  .suo-header .eyebrow{font-size:8px;letter-spacing:.5px}
+  .suo-header h1{font-size:17px;letter-spacing:-.3px}
+  .suo-header p{font-size:10px}
+  .suo-header .suo-skyline{width:42vw;opacity:.14}
+}
