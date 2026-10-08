@@ -723,3 +723,16 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
 .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:1000px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Header utama: tajuk sahaja, lebih besar dan seimbang dengan logo SUO */
+.topbar .header-title-wrap{display:flex;align-items:center;min-width:0}
+.topbar h1{font-size:clamp(30px,2.65vw,43px)!important;line-height:1.08!important;font-weight:900;letter-spacing:-.8px;margin:0!important}
+.topbar h1 span{font-size:1.10em!important;white-space:nowrap;color:#e54827!important}
+@media(max-width:900px){
+ .topbar h1{font-size:clamp(24px,3.7vw,33px)!important}
+ .topbar h1 span{font-size:1.06em!important}
+}
+@media(max-width:600px){
+ .topbar h1{font-size:clamp(18px,4.8vw,27px)!important;letter-spacing:-.4px}
+ .topbar h1 span{font-size:1.02em!important;white-space:normal}
+}
