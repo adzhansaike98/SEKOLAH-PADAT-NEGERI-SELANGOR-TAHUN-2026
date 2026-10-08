@@ -14,8 +14,8 @@ function setup(){
  fillSelect('fDistrict', [...new Set(all.map(r=>r.DAERAH))].sort((a,b)=>a.localeCompare(b,'ms')));
  fillSelect('fPBT', [...new Set(all.map(r=>String(r.PBT||'').trim()))].filter(Boolean).sort((a,b)=>a.localeCompare(b,'ms')));
  fillSelect('fGeran', [...new Set(all.map(r=>String(r['Status Geran']||'').trim()))].filter(Boolean).sort());
- for(const id of ['fDistrict','fPBT','fJenis','fGeran','fPemutihan','search']) $(id).addEventListener(id==='search'?'input':'change',()=>{page=1;render()});
- $('reset').onclick=()=>{for(const id of ['fDistrict','fPBT','fJenis','fGeran','fPemutihan','search'])$(id).value='';page=1;render()};
+ for(const id of ['fDistrict','fPBT','fJenis','fGeran','search']) $(id).addEventListener(id==='search'?'input':'change',()=>{page=1;render()});
+ $('reset').onclick=()=>{for(const id of ['fDistrict','fPBT','fJenis','fGeran','search'])$(id).value='';page=1;render()};
  $('export').onclick=exportCSV;
  const sideDownload=$('sideDownload');
  if(sideDownload)sideDownload.addEventListener('click',e=>{e.preventDefault();exportCSV()});
@@ -48,9 +48,9 @@ function setup(){
  setTimeout(()=>map.invalidateSize(),250);
  render();
 }
-function getFiltered(){const d=$('fDistrict').value,pbt=$('fPBT').value,j=$('fJenis').value,g=$('fGeran').value,p=$('fPemutihan').value,q=normalize($('search').value).trim();return all.filter(r=>(!d||r.DAERAH===d)&&(!pbt||r.PBT===pbt)&&(!j||r['SK/SMK']===j)&&(!g||String(r['Status Geran']).trim()===g)&&(!p||normalize(r.Pemutihan).trim()===p)&&(!q||[r.nama,r.DAERAH,r.PBT,r['MUKIM / PEKAN / BANDAR'],r['NO LOT/PT']].some(v=>normalize(v).includes(q))))}
+function getFiltered(){const d=$('fDistrict').value,pbt=$('fPBT').value,j=$('fJenis').value,g=$('fGeran').value,q=normalize($('search').value).trim();return all.filter(r=>(!d||r.DAERAH===d)&&(!pbt||r.PBT===pbt)&&(!j||r['SK/SMK']===j)&&(!g||String(r['Status Geran']).trim()===g)&&(!q||[r.nama,r.DAERAH,r.PBT,r['MUKIM / PEKAN / BANDAR'],r['NO LOT/PT']].some(v=>normalize(v).includes(q))))}
 function render(){filtered=getFiltered();renderKPIs();renderMap();renderGraphs();renderFacilities();renderRanks();renderNotes();renderTable()}
-function renderKPIs(){const c=filtered.filter(coords).length;const figures=[['🏫','Jumlah Sekolah',filtered.length,'Rekod dalam penapis'],['📍','Daerah Terlibat',new Set(filtered.map(r=>r.DAERAH)).size,'Daripada 9 daerah Selangor'],['🎓','Sekolah Rendah (SK)',filtered.filter(r=>r['SK/SMK']==='SK').length,'Kategori sekolah'],['🏛','Sekolah Menengah (SMK)',filtered.filter(r=>r['SK/SMK']==='SMK').length,'Kategori sekolah'],['🛠','Perlu Pemutihan',filtered.filter(r=>normalize(r.Pemutihan)==='perlu').length,'Sekolah ditanda perlu']];$('kpis').innerHTML=figures.map(([icon,label,value,sub])=>`<article class="kpi"><span class="kpi-icon">${icon}</span><div><div class="kpi-label">${label}</div><div class="kpi-number">${fmt(value)}</div><div class="kpi-sub">${sub}</div></div></article>`).join('');$('coordBadge').textContent=c+' / '+filtered.length+' koordinat';}
+function renderKPIs(){const c=filtered.filter(coords).length;const figures=[['🏫','Jumlah Sekolah',filtered.length,'Rekod dalam penapis'],['📍','Daerah Terlibat',new Set(filtered.map(r=>r.DAERAH)).size,'Daripada 9 daerah Selangor'],['🎓','Sekolah Rendah (SK)',filtered.filter(r=>r['SK/SMK']==='SK').length,'Kategori sekolah'],['🏛','Sekolah Menengah (SMK)',filtered.filter(r=>r['SK/SMK']==='SMK').length,'Kategori sekolah']];$('kpis').innerHTML=figures.map(([icon,label,value,sub])=>`<article class="kpi"><span class="kpi-icon">${icon}</span><div><div class="kpi-label">${label}</div><div class="kpi-number">${fmt(value)}</div><div class="kpi-sub">${sub}</div></div></article>`).join('');$('coordBadge').textContent=c+' / '+filtered.length+' koordinat';}
 function renderMap(){if(group)map.removeLayer(group);group=showCluster?L.markerClusterGroup({
  showCoverageOnHover:false,maxClusterRadius:38,
  iconCreateFunction(cluster){
