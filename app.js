@@ -148,7 +148,22 @@ function renderGraphs(){const districts=sortedCounts(count(filtered,'DAERAH'));c
  const types=['SK','SMK'],tc=types.map(x=>filtered.filter(r=>r['SK/SMK']===x).length),tcol=['#e43647','#ffad25'];chart('typeChart','doughnut',types,tc,tcol);donutLegend('typeLegend',types,tc,tcol);
  const names=['ada geran','tiada geran','tiada data geran'],gc=names.map(x=>filtered.filter(r=>normalize(r['Status Geran'])===x).length),gcol=['#19a782','#f18b2c','#f7c75c'];chart('grantChart','doughnut',['Ada Geran','Tiada Geran','Tiada Data Geran'],gc,gcol);donutLegend('grantLegend',['Ada Geran','Tiada Geran','Tiada Data'],gc,gcol);
  const wc=['perlu','tiada'].map(x=>filtered.filter(r=>normalize(r.Pemutihan)===x).length),wcol=['#e94e6e','#2380f4'];chart('whiteChart','doughnut',['Perlu','Tiada'],wc,wcol);donutLegend('whiteLegend',['Perlu','Tiada'],wc,wcol);}
-function renderFacilities(){const items=[['Bilik Darjah Perdana','BD Perdana'],['Bilik Darjah PPKI','BD PPKI'],['Tandas','Tandas'],['DTSB','DTSB'],['Jenis Aliran','Jenis Aliran']];$('facilities').innerHTML=items.map(([label,key])=>`<div class="facility"><span>${label}</span><strong>${fmt(sum(filtered,key))}</strong></div>`).join('')}
+function renderFacilities(){
+ const items=[
+  ['Bilik Darjah Perdana','BD Perdana','🏫','red'],
+  ['Bilik Darjah PPKI','BD PPKI','♿','orange'],
+  ['Tandas','Tandas','🚻','yellow'],
+  ['DTSB','DTSB','🛠️','green'],
+  ['Jenis Aliran','Jenis Aliran','📘','blue']
+ ];
+ $('facilities').innerHTML=items.map(([label,key,icon,color])=>
+  `<div class="facility facility-premium f-${color}">
+   <div class="facility-left"><span class="facility-icon" aria-hidden="true">${icon}</span>
+    <div class="facility-text"><div class="facility-name">${label}</div><div class="facility-subtitle">Kemudahan direkodkan</div></div>
+   </div><div class="facility-right"><strong class="facility-value">${fmt(sum(filtered,key))}</strong></div>
+  </div>`
+ ).join('');
+}
 /* Logo rasmi boleh diletakkan dalam assets/pbt/ tanpa ubah kod.
    Singkatan dipaparkan apabila logo rasmi belum tersedia. */
 const pbtLogoMap={
