@@ -133,7 +133,30 @@ function renderGraphs(){const districts=sortedCounts(count(filtered,'DAERAH'));c
  const names=['ada geran','tiada geran','tiada data geran'],gc=names.map(x=>filtered.filter(r=>normalize(r['Status Geran'])===x).length),gcol=['#19a782','#f18b2c','#f7c75c'];chart('grantChart','doughnut',['Ada Geran','Tiada Geran','Tiada Data Geran'],gc,gcol);donutLegend('grantLegend',['Ada Geran','Tiada Geran','Tiada Data'],gc,gcol);
  const wc=['perlu','tiada'].map(x=>filtered.filter(r=>normalize(r.Pemutihan)===x).length),wcol=['#e94e6e','#2380f4'];chart('whiteChart','doughnut',['Perlu','Tiada'],wc,wcol);donutLegend('whiteLegend',['Perlu','Tiada'],wc,wcol);}
 function renderFacilities(){const items=[['Bilik Darjah Perdana','BD Perdana'],['Bilik Darjah PPKI','BD PPKI'],['Tandas','Tandas'],['DTSB','DTSB'],['Jenis Aliran','Jenis Aliran']];$('facilities').innerHTML=items.map(([label,key])=>`<div class="facility"><span>${label}</span><strong>${fmt(sum(filtered,key))}</strong></div>`).join('')}
-function renderRanks(){const list=sortedCounts(count(filtered,'PBT')).slice(0,5),max=list[0]?.[1]||1;$('pbtRanking').innerHTML=list.length?list.map(([n,c],i)=>`<div class="rank-row"><span class="index">${i+1}</span><span>${safe(n)}</span><div class="rankbar"><span style="width:${Math.round(c/max*100)}%"></span></div><b>${c}</b></div>`).join(''):'<p style="padding:10px 20px">Tiada rekod untuk penapis ini.</p>'}
+/* Logo rasmi boleh diletakkan dalam assets/pbt/ tanpa ubah kod.
+   Singkatan dipaparkan apabila logo rasmi belum tersedia. */
+const pbtLogoMap={
+ 'Majlis Bandaraya Diraja Klang':['MBDK','assets/pbt/mbdk.png'],
+ 'Majlis Perbandaran Kajang':['MPKj','assets/pbt/mpkj.png'],
+ 'Majlis Perbandaran Selayang':['MPS','assets/pbt/mps.png'],
+ 'Majlis Perbandaran Kuala Langat':['MPKL','assets/pbt/mpkl.png'],
+ 'Majlis Perbandaran Sepang':['MPSepang','assets/pbt/mpsepang.png']
+};
+function renderRanks(){
+ const list=sortedCounts(count(filtered,'PBT')).slice(0,5),max=list[0]?.[1]||1;
+ $('pbtRanking').innerHTML=list.length?'<div class="pbt-rank-list">'+list.map(([n,c],i)=>{
+  const item=pbtLogoMap[n]||[String(n).split(/\s+/).map(x=>x[0]).slice(0,4).join('').toUpperCase(),''];
+  const short=item[0],src=item[1];
+  const logo=src?`<img loading="lazy" src="${safe(src)}" alt="Logo ${safe(n)}" onload="this.previousElementSibling.style.display='none'" onerror="this.remove()">`:'';
+  return `<div class="pbt-rank-card rank-tier-${i+1}">
+   <span class="rank-order" aria-label="Kedudukan ${i+1}">${i+1}</span>
+   <span class="pbt-logo-circle"><span class="pbt-logo-fallback">${safe(short)}</span>${logo}</span>
+   <span class="pbt-rank-info"><strong class="pbt-rank-name">${safe(n)}</strong>
+    <span class="pbt-rank-track"><span class="pbt-rank-fill" style="width:${Math.round(c/max*100)}%"></span></span>
+   </span><span class="pbt-rank-total">${fmt(c)}<small> sekolah</small></span>
+  </div>`;
+ }).join('')+'</div>':'<p style="padding:16px">Tiada rekod untuk penapis ini.</p>';
+}
 function renderNotes(){const cards=[['Ada Geran',filtered.filter(r=>normalize(r['Status Geran'])==='ada geran').length,'success'],['Tiada Geran',filtered.filter(r=>normalize(r['Status Geran'])==='tiada geran').length,'warning'],['Mesyuarat 20A Bil. 8',filtered.filter(r=>Number(r['Bil Mesy 20A'])===8).length,''],['Mesyuarat 20A Bil. 3',filtered.filter(r=>Number(r['Bil Mesy 20A'])===3).length,'']];$('notes').innerHTML=cards.map(([label,v,cls])=>`<div class="detail-card ${cls}"><strong>${fmt(v)}</strong><small>${label}</small></div>`).join('')}
 function badge(s){const t=normalize(s);return t.includes('tiada data')?'gray':t.includes('tiada')&&t.includes('geran')?'red':t.includes('perlu')?'red':t.includes('ada geran')?'green':t==='tiada'?'green':'orange'}
 function renderTable(){const size=Number($('pageSize').value),totalPage=Math.max(1,Math.ceil(filtered.length/size));page=Math.min(page,totalPage);const start=(page-1)*size,rs=filtered.slice(start,start+size);$('schoolRows').innerHTML=rs.map(r=>{const url=`https://www.google.com/maps?q=${encodeURIComponent(r.latitude+','+r.longitude)}`;return `<tr><td>${r.BIL}</td><td class="schoolname">${safe(r.nama)}</td><td>${safe(r.DAERAH)}</td><td>${safe(r.PBT)}</td><td>${safe(r['SK/SMK'])}</td><td>${r.latitude??'—'}</td><td>${r.longitude??'—'}</td><td><span class="pill ${badge(r['Status Geran'])}">${safe(r['Status Geran'])}</span></td><td><span class="pill ${badge(r.Pemutihan)}">${safe(r.Pemutihan)}</span></td><td>${fmt(Number(r['BD Perdana'])||0)}</td><td>${fmt(Number(r['BD PPKI'])||0)}</td><td><a class="maplink" target="_blank" rel="noopener noreferrer" href="${url}">Lihat ↗</a></td></tr>`}).join('')||'<tr><td colspan="12">Tiada sekolah yang sepadan dengan penapis.</td></tr>';$('tableCount').textContent=`${filtered.length} rekod`;$('pageInfo').textContent=`Halaman ${page} / ${totalPage}`;$('prev').disabled=page<=1;$('next').disabled=page>=totalPage;}
