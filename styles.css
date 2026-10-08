@@ -473,3 +473,14 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
 .topbar{padding-left:12px!important;padding-right:24px!important}
 .topbar .brand{margin-left:0!important;justify-content:flex-start!important}
 @media(max-width:670px){.topbar{padding-left:8px!important;padding-right:10px!important}}
+
+/* Skyline SUO pada hujung kanan header — menggantikan hiasan bulatan */
+.topbar{isolation:isolate;position:relative;min-height:118px;background:#fff!important}
+.topbar:before{content:"";position:absolute;z-index:-1;pointer-events:none;right:0;top:0;bottom:0;
+ width:min(39vw,680px);background:url('https://raw.githubusercontent.com/geospatialpms-glitch/Tapak-Perkuburan-Negeri-Selangor/main/header-skyline.png') right center / contain no-repeat}
+.topbar:after{display:none!important;content:none!important}
+.topbar .brand{position:relative;z-index:1}
+.topbar .header-actions{position:relative;z-index:1;margin-right:min(30vw,460px)}
+@media(max-width:1250px){.topbar .header-actions{margin-right:0;background:#fff9}}
+@media(max-width:850px){.topbar:before{width:48vw;opacity:.38}.topbar .brand{max-width:83%}}
+@media(max-width:670px){.topbar{min-height:95px}.topbar:before{width:48vw;opacity:.2}.topbar .brand{max-width:100%}}
