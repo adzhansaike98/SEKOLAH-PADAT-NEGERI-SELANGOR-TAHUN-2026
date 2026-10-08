@@ -125,3 +125,22 @@ footer strong{color:#d34432}
   .compact-panel:has(#typeChart) .donut-wrap canvas,
   .compact-panel:has(#grantChart) .donut-wrap canvas{width:126px!important;height:126px!important}
 }
+
+/* Saiz seimbang dan efek timbul bagi carta Komposisi Sekolah dan Status Geran sahaja */
+.compact-panel:has(#typeChart) .donut-wrap,
+.compact-panel:has(#grantChart) .donut-wrap{
+ min-height:224px;gap:11px;padding:15px 12px 25px;align-items:center;
+}
+.compact-panel:has(#typeChart) .donut-wrap canvas,
+.compact-panel:has(#grantChart) .donut-wrap canvas{
+ width:150px!important;height:150px!important;
+ filter:drop-shadow(0 7px 8px rgba(89,46,29,.18));
+}
+.compact-panel:has(#typeChart) .mini-legend,
+.compact-panel:has(#grantChart) .mini-legend{min-width:0;flex:1}
+@media(max-width:670px){
+ .compact-panel:has(#typeChart) .donut-wrap canvas,
+ .compact-panel:has(#grantChart) .donut-wrap canvas{
+  width:136px!important;height:136px!important;
+ }
+}
