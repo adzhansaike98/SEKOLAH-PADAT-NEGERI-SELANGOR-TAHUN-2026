@@ -7,12 +7,22 @@
 <link rel="stylesheet" href="styles.css"/>
 </head><body>
 <header class="topbar"><div class="brand"><div><div class="eyebrow">PEMANTAUAN PERANCANGAN SEKOLAH</div><h1>Dashboard Sekolah Padat <span>Negeri Selangor 2026</span></h1><p>Analisis geospatial, status geran, pemutihan & kemudahan sekolah</p></div></div><div class="header-actions"><span class="year">◷ TAHUN 2026</span><span class="dot-online">● Excel + GeoJSON</span></div></header>
-<main class="container">
+<div class="school-layout"><nav class="school-sidebar" aria-label="Navigasi dashboard sekolah">
+<a class="side-link active" href="#utama"><span>⌂</span>Utama</a>
+<a class="side-link" href="#taburan"><span>📍</span>Taburan Sekolah</a>
+<a class="side-link" href="#analisis-daerah"><span>📊</span>Analisis Daerah</a>
+<a class="side-link" href="#jenis-sekolah"><span>▦</span>Jenis Sekolah</a>
+<a class="side-link" href="#kemudahan"><span>🏫</span>Kemudahan Sekolah</a>
+<a class="side-link" href="#pbt"><span>🏛</span>Analisis PBT</a>
+<a class="side-link" href="#ringkasan"><span>◉</span>Ringkasan Data</a>
+<a class="side-link" href="#senarai"><span>☷</span>Senarai Sekolah</a>
+<a class="side-link" href="#muat-turun" id="sideDownload"><span>↓</span>Muat Turun Data</a>
+</nav><main class="container" id="utama">
 <section class="filter-panel" aria-label="Penapis dashboard"><label>Daerah<select id="fDistrict"><option value="">Semua Daerah</option></select></label><label>PBT<select id="fPBT"><option value="">Semua PBT</option></select></label><label>Jenis Sekolah<select id="fJenis"><option value="">Semua Jenis</option><option>SK</option><option>SMK</option></select></label><label>Status Geran<select id="fGeran"><option value="">Semua Status</option></select></label><label>Pemutihan<select id="fPemutihan"><option value="">Semua Status</option><option value="perlu">Perlu</option><option value="tiada">Tiada</option></select></label><label>Carian Sekolah<input id="search" type="search" placeholder="Nama sekolah / PBT / mukim..."/></label><button id="reset" class="btn btn-outline">↺ Set Semula</button><button id="export" class="btn btn-primary">↓ Eksport CSV</button></section>
 <div class="kpis" id="kpis" aria-live="polite"></div>
 <div class="dashboard-grid">
-<section class="panel map-panel"><div class="panel-head"><div><h2>📍 Taburan Lokasi Sekolah Padat</h2><p>Penanda lokasi berdasarkan koordinat sebenar</p></div><span class="chip" id="coordBadge">Koordinat</span></div><div class="boundary-toolbar" aria-label="Paparan sempadan"><label><input type="checkbox" id="showDistrictBoundary" checked/> Sempadan daerah</label><label><input type="checkbox" id="showPBTBoundary"/> Sempadan PBT</label><label><input type="checkbox" id="showSchools" checked/> Lokasi sekolah</label><button class="text-btn" id="fitBoundary">⤢ Papar seluruh Selangor</button></div><div class="map-box"><div id="map" role="application" aria-label="Peta sekolah padat negeri Selangor"></div></div><div class="legend"><span><i style="background:#2563eb"></i> SK</span><span><i style="background:#f97316"></i> SMK</span><span><i style="background:#155e75"></i> Garisan daerah</span><span><i style="background:#f59e0b"></i> Garisan PBT</span><span>🖱 Klik sempadan untuk nama kawasan</span></div><div class="map-footer"><button class="text-btn" id="zoomAll">⤢ Papar semua lokasi</button><button class="text-btn" id="toggleHeat">◉ Paparan kluster: aktif</button></div></section>
-<section class="panel district-panel">
+<section id="taburan" class="panel map-panel"><div class="panel-head"><div><h2>📍 Taburan Lokasi Sekolah Padat</h2><p>Penanda lokasi berdasarkan koordinat sebenar</p></div><span class="chip" id="coordBadge">Koordinat</span></div><div class="boundary-toolbar" aria-label="Paparan sempadan"><label><input type="checkbox" id="showDistrictBoundary" checked/> Sempadan daerah</label><label><input type="checkbox" id="showPBTBoundary"/> Sempadan PBT</label><label><input type="checkbox" id="showSchools" checked/> Lokasi sekolah</label><button class="text-btn" id="fitBoundary">⤢ Papar seluruh Selangor</button></div><div class="map-box"><div id="map" role="application" aria-label="Peta sekolah padat negeri Selangor"></div></div><div class="legend"><span><i style="background:#2563eb"></i> SK</span><span><i style="background:#f97316"></i> SMK</span><span><i style="background:#155e75"></i> Garisan daerah</span><span><i style="background:#f59e0b"></i> Garisan PBT</span><span>🖱 Klik sempadan untuk nama kawasan</span></div><div class="map-footer"><button class="text-btn" id="zoomAll">⤢ Papar semua lokasi</button><button class="text-btn" id="toggleHeat">◉ Paparan kluster: aktif</button></div></section>
+<section id="analisis-daerah" class="panel district-panel">
 <div class="panel-head"><div><h2>📊 Sekolah Mengikut Daerah</h2><p>Bilangan sekolah dalam pilihan penapis</p></div></div>
 <div class="project-scope" aria-labelledby="projectScopeTitle">
 <h3 id="projectScopeTitle">📋 SKOP PROJEK</h3>
@@ -23,22 +33,22 @@
 </ol></div>
 <div class="chart-box district-chart-box"><canvas id="districtChart" aria-label="Graf bilangan sekolah mengikut daerah"></canvas></div>
 </section>
-<div class="donut-trio" aria-label="Infografik Jenis Sekolah, Status Geran dan Pemutihan">
+<div id="jenis-sekolah" class="donut-trio" aria-label="Infografik Jenis Sekolah, Status Geran dan Pemutihan">
 <section class="panel compact-panel"><div class="panel-head"><h2>📈 Komposisi Sekolah</h2></div><div class="donut-wrap"><div class="premium-donut-visual"><canvas id="typeChart"></canvas></div><div id="typeLegend" class="mini-legend"></div></div></section>
 <section class="panel compact-panel"><div class="panel-head"><h2>📄 Status Geran</h2></div><div class="donut-wrap"><div class="premium-donut-visual"><canvas id="grantChart"></canvas></div><div id="grantLegend" class="mini-legend"></div></div></section>
 <section class="panel compact-panel"><div class="panel-head"><h2>🛠 Status Pemutihan</h2></div><div class="donut-wrap"><div class="premium-donut-visual"><canvas id="whiteChart"></canvas></div><div id="whiteLegend" class="mini-legend"></div></div></section>
 </div>
 <div class="three-summary-row">
-<section class="panel compact-panel"><div class="panel-head"><h2>🏢 Kemudahan Direkodkan</h2></div><div id="facilities" class="facility-list"></div></section>
+<section id="kemudahan" class="panel compact-panel"><div class="panel-head"><h2>🏢 Kemudahan Direkodkan</h2></div><div id="facilities" class="facility-list"></div></section>
 <div class="pbt-summary-row">
-<section class="panel rank-panel"><div class="panel-head"><h2>🏆 Top 5 Pihak Berkuasa Tempatan (PBT)</h2></div><div id="pbtRanking"></div></section>
-<section class="panel detail-panel"><div class="panel-head"><h2>🔎 Ringkasan Data Penting</h2></div><div id="notes" class="detail-cards"></div></section>
+<section id="pbt" class="panel rank-panel"><div class="panel-head"><h2>🏆 Top 5 Pihak Berkuasa Tempatan (PBT)</h2></div><div id="pbtRanking"></div></section>
+<section id="ringkasan" class="panel detail-panel"><div class="panel-head"><h2>🔎 Ringkasan Data Penting</h2></div><div id="notes" class="detail-cards"></div></section>
 </div>
 </div>
 </div>
-<section class="panel table-panel"><div class="panel-head"><div><h2>📋 Senarai & Maklumat Lokasi Sekolah</h2><p>Data penuh termasuk latitude, longitude, sempadan daerah/PBT, geran dan kemudahan</p></div><div class="table-tools"><span id="tableCount"></span><label>Baris <select id="pageSize"><option>10</option><option>20</option><option>50</option><option>129</option></select></label></div></div><div class="table-scroll"><table><thead><tr><th>Bil.</th><th>Nama Sekolah</th><th>Daerah</th><th>PBT</th><th>Jenis</th><th>Latitude</th><th>Longitude</th><th>Status Geran</th><th>Pemutihan</th><th>BD Perdana</th><th>BD PPKI</th><th>Lokasi</th></tr></thead><tbody id="schoolRows"></tbody></table></div><div class="pagination"><button id="prev" class="btn btn-outline">← Sebelum</button><span id="pageInfo"></span><button id="next" class="btn btn-outline">Seterusnya →</button></div></section>
+<section id="senarai" class="panel table-panel"><div class="panel-head"><div><h2>📋 Senarai & Maklumat Lokasi Sekolah</h2><p>Data penuh termasuk latitude, longitude, sempadan daerah/PBT, geran dan kemudahan</p></div><div class="table-tools"><span id="tableCount"></span><label>Baris <select id="pageSize"><option>10</option><option>20</option><option>50</option><option>129</option></select></label></div></div><div class="table-scroll"><table><thead><tr><th>Bil.</th><th>Nama Sekolah</th><th>Daerah</th><th>PBT</th><th>Jenis</th><th>Latitude</th><th>Longitude</th><th>Status Geran</th><th>Pemutihan</th><th>BD Perdana</th><th>BD PPKI</th><th>Lokasi</th></tr></thead><tbody id="schoolRows"></tbody></table></div><div class="pagination"><button id="prev" class="btn btn-outline">← Sebelum</button><span id="pageInfo"></span><button id="next" class="btn btn-outline">Seterusnya →</button></div></section>
 <footer><strong>Dashboard Sekolah Padat Negeri Selangor 2026</strong><span>Sumber: Rekod Excel sekolah dan dua fail GeoJSON sempadan daerah/PBT yang dimuat naik. Angka adalah berdasarkan rekod, bukan pengesahan kadar kepadatan enrolmen sebenar.</span><span>© 2026 • Paparan analisis perancangan</span></footer>
-</main>
+</main></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/><link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
