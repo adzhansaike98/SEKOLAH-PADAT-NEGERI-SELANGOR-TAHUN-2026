@@ -712,3 +712,9 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
 .map-panel .school-cluster-large .school-cluster-inner{background:linear-gradient(145deg,#ed5837,#d72f48)}
 .map-panel .school-cluster-count{font-size:16px;font-weight:900;line-height:1;letter-spacing:-.5px;text-shadow:0 1px 2px #5a150a55}
 .map-panel .school-cluster-large .school-cluster-count{font-size:18px}
+
+/* Saiz ikon peta dikecilkan sedikit agar titik sekolah lebih kemas */
+.map-panel .school-pin{width:29px;height:29px;border-radius:11px 11px 11px 3px}
+.map-panel .school-pin-symbol{font-size:16px}
+.map-panel .school-cluster-count{font-size:14px}
+.map-panel .school-cluster-large .school-cluster-count{font-size:16px}
