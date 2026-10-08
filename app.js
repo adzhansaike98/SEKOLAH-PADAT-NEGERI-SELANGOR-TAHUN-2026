@@ -76,31 +76,57 @@ function fitBoundaries(){
  const bounds=districtLayer?.getBounds();if(bounds?.isValid())map.fitBounds(bounds.pad(.045));else fitMarkers();
 }
 /* Efek kedalaman 3D untuk dua carta donut, bukan untuk graf lain */
-const schoolDonut3D = {
- id:'schoolDonut3D',
- beforeDatasetDraw(ch,args){
-  if(!['typeChart','grantChart','whiteChart'].includes(ch.canvas.id)||ch.config.type!=='doughnut')return;
-  const ctx=ch.ctx,arcs=args.meta.data;
+/* Donut premium: bulatan kekal 1:1, efek kedalaman lembut dan jumlah di tengah */
+const premiumSchoolDonut = {
+ id:'premiumSchoolDonut',
+ afterDatasetsDraw(chart){
+  if(!['typeChart','grantChart','whiteChart'].includes(chart.canvas.id))return;
+  const arcs=chart.getDatasetMeta(0)?.data;
+  if(!arcs?.length)return;
+  const p=arcs[0].getProps(['x','y','innerRadius'],true);
+  const total=chart.data.datasets[0].data.reduce((sum,n)=>sum+(Number(n)||0),0);
+  const ctx=chart.ctx;
   ctx.save();
-  for(let depth=12;depth>=1;depth--){
-   ctx.save();ctx.translate(0,depth);ctx.filter='brightness(0.72)';ctx.globalAlpha=.76;
-   for(const arc of arcs)arc.draw(ctx);
-   ctx.restore();
-  }
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillStyle='#172441';ctx.font='800 23px Inter, sans-serif';
+  ctx.fillText(new Intl.NumberFormat('ms-MY').format(total),p.x,p.y-5);
+  ctx.fillStyle='#8b7469';ctx.font='600 10px Inter, sans-serif';
+  ctx.fillText('sekolah',p.x,p.y+15);
   ctx.restore();
  }
 };
-Chart.register(schoolDonut3D);
-function makeSchoolDonutColors(id,colors){
- if(!['typeChart','grantChart','whiteChart'].includes(id))return colors;
- const ctx=$(id).getContext('2d');
- return colors.map(c=>{
-  const g=ctx.createLinearGradient(0,10,0,165);
-  g.addColorStop(0,c);g.addColorStop(.52,c);g.addColorStop(1,c);
-  return g;
+Chart.register(premiumSchoolDonut);
+function chart(id,type,labels,values,colors,opts={}){
+ if(charts[id])charts[id].destroy();
+ const isDonut=type==='doughnut';
+ const premium=['typeChart','grantChart','whiteChart'].includes(id);
+ charts[id]=new Chart($(id),{
+  type,
+  data:{labels,datasets:[{
+   data:values,
+   backgroundColor:colors,
+   borderColor:isDonut?'#fff':undefined,
+   borderWidth:isDonut?3:0,
+   hoverOffset:premium?5:0,
+   spacing:premium?1:0,
+   borderRadius:isDonut?0:5,
+   barThickness:21
+  }]},
+  options:{
+   responsive:true,maintainAspectRatio:false,
+   rotation:isDonut?-90:undefined,circumference:isDonut?360:undefined,
+   cutout:isDonut?(premium?'57%':'72%'):undefined,
+   layout:premium?{padding:7}:{},
+   animation:{duration:450},
+   plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.label}: ${c.formattedValue} sekolah`}}},
+   scales:isDonut?{}:{
+    x:{grid:{display:false},ticks:{font:{size:10},maxRotation:38,minRotation:20}},
+    y:{beginAtZero:true,ticks:{precision:0,stepSize:10},grid:{color:'#edf2f8'}}
+   },
+   ...opts
+  }
  });
 }
-function chart(id,type,labels,values,colors,opts={}){if(charts[id])charts[id].destroy();const isDoughnut=type==='doughnut';const isSchool3D=['typeChart','grantChart','whiteChart'].includes(id);charts[id]=new Chart($(id),{type,data:{labels,datasets:[{data:values,backgroundColor:makeSchoolDonutColors(id,colors),borderWidth:isDoughnut?3:0,borderColor:'#fff',borderRadius:isDoughnut?0:5,barThickness:21}]},options:{responsive:true,maintainAspectRatio:false,cutout:isDoughnut?(isSchool3D?'50%':'72%'):undefined,layout:isSchool3D?{padding:{top:8,bottom:19,left:8,right:8}}:{},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.label}: ${c.formattedValue} sekolah`}}},scales:isDoughnut?{}:{x:{grid:{display:false},ticks:{font:{size:10},maxRotation:38,minRotation:20}},y:{beginAtZero:true,ticks:{precision:0,stepSize:10},grid:{color:'#edf2f8'}}},...opts}})}
 function donutLegend(id,labels,vals,colors){const total=vals.reduce((a,b)=>a+b,0);$(id).innerHTML=labels.map((x,i)=>`<div class="legend-item"><span><i class="swatch" style="background:${colors[i]}"></i>${safe(x)}</span><b>${fmt(vals[i])} <small>(${total?(100*vals[i]/total).toFixed(1):'0'}%)</small></b></div>`).join('')}
 function renderGraphs(){const districts=sortedCounts(count(filtered,'DAERAH'));chart('districtChart','bar',districts.map(x=>x[0]),districts.map(x=>x[1]),['#df3344','#ef642c','#f39c28','#d9b42a','#7cb84b','#42a88b','#3895aa','#4380ca','#8160b8']);
  const types=['SK','SMK'],tc=types.map(x=>filtered.filter(r=>r['SK/SMK']===x).length),tcol=['#e43647','#ffad25'];chart('typeChart','doughnut',types,tc,tcol);donutLegend('typeLegend',types,tc,tcol);
