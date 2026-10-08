@@ -158,7 +158,17 @@ function donutLegend(id,labels,vals,colors){const total=vals.reduce((a,b)=>a+b,0
 function renderGraphs(){const districts=sortedCounts(count(filtered,'DAERAH'));chart('districtChart','bar',districts.map(x=>x[0]),districts.map(x=>x[1]),['#df3344','#ef642c','#f39c28','#d9b42a','#7cb84b','#42a88b','#3895aa','#4380ca','#8160b8']);
  const types=['SK','SMK'],tc=types.map(x=>filtered.filter(r=>r['SK/SMK']===x).length),tcol=['#e43647','#ffad25'];chart('typeChart','doughnut',types,tc,tcol);donutLegend('typeLegend',types,tc,tcol);
  const names=['ada geran','tiada geran','tiada data geran'],gc=names.map(x=>filtered.filter(r=>normalize(r['Status Geran'])===x).length),gcol=['#19a782','#f18b2c','#f7c75c'];chart('grantChart','doughnut',['Ada Geran','Tiada Geran','Tiada Data Geran'],gc,gcol);donutLegend('grantLegend',['Ada Geran','Tiada Geran','Tiada Data'],gc,gcol);
- const wc=['perlu','tiada'].map(x=>filtered.filter(r=>normalize(r.Pemutihan)===x).length),wcol=['#e94e6e','#2380f4'];chart('whiteChart','doughnut',['Perlu','Tiada'],wc,wcol);donutLegend('whiteLegend',['Perlu','Tiada'],wc,wcol);}
+ renderPbtOverall();}
+
+function renderPbtOverall(){
+ const list=sortedCounts(count(filtered,'PBT'));
+ const max=list[0]?.[1]||1;
+ const colors=['#df3445','#ed6b2b','#f4a21f','#16a085','#2486c9','#9062b7'];
+ $('pbtOverall').innerHTML=list.length?list.map(([name,total],i)=>`<div class="pbt-overall-item">
+  <div class="pbt-overall-label"><span class="pbt-overall-name" title="${safe(name)}">${safe(name)}</span><strong class="pbt-overall-count">${fmt(total)}</strong></div>
+  <div class="pbt-overall-track"><span style="width:${total/max*100}%;background:${colors[i%colors.length]}"></span></div>
+ </div>`).join(''):'<p class="pbt-overall-empty">Tiada rekod untuk penapis ini.</p>';
+}
 function renderFacilities(){
  const items=[
   ['Bilik Darjah Perdana','BD Perdana','🏫','red'],
