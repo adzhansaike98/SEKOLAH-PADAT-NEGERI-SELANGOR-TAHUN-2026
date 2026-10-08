@@ -625,3 +625,15 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
  .facility-premium .facility-name{font-size:13px!important}
  .facility-premium .facility-value{font-size:29px!important}
 }
+
+/* Besarkan semua ikon kemudahan termasuk DTSB */
+.three-summary-row #facilities .facility-premium{min-height:95px!important;padding:10px 12px!important}
+.three-summary-row #facilities .facility-icon{
+ width:78px!important;height:78px!important;flex:0 0 78px!important;
+ font-size:48px!important;border-radius:19px!important;
+ display:grid!important;place-items:center!important;line-height:1!important;
+}
+@media(max-width:750px){
+ .three-summary-row #facilities .facility-premium{min-height:83px!important}
+ .three-summary-row #facilities .facility-icon{width:64px!important;height:64px!important;flex-basis:64px!important;font-size:40px!important}
+}
