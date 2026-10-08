@@ -718,3 +718,8 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
 .map-panel .school-pin-symbol{font-size:16px}
 .map-panel .school-cluster-count{font-size:14px}
 .map-panel .school-cluster-large .school-cluster-count{font-size:16px}
+
+/* Empat KPI selepas mengeluarkan kad Perlu Pemutihan */
+.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
