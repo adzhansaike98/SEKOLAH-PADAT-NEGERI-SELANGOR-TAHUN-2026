@@ -17,6 +17,16 @@ function setup(){
  for(const id of ['fDistrict','fPBT','fJenis','fGeran','fPemutihan','search']) $(id).addEventListener(id==='search'?'input':'change',()=>{page=1;render()});
  $('reset').onclick=()=>{for(const id of ['fDistrict','fPBT','fJenis','fGeran','fPemutihan','search'])$(id).value='';page=1;render()};
  $('export').onclick=exportCSV;
+ const sideDownload=$('sideDownload');
+ if(sideDownload)sideDownload.addEventListener('click',e=>{e.preventDefault();exportCSV()});
+ document.querySelectorAll('.school-sidebar .side-link:not(#sideDownload)').forEach(link=>{
+  link.addEventListener('click',()=>{
+   document.querySelectorAll('.school-sidebar .side-link').forEach(a=>a.classList.remove('active'));
+   link.classList.add('active');
+   if(link.getAttribute('href')==='#taburan')setTimeout(()=>map?.invalidateSize(),350);
+  });
+ });
+
  $('pageSize').onchange=()=>{page=1;renderTable()};
  $('prev').onclick=()=>{page=Math.max(1,page-1);renderTable()};
  $('next').onclick=()=>{page=Math.min(Math.ceil(filtered.length/Number($('pageSize').value))||1,page+1);renderTable()};
