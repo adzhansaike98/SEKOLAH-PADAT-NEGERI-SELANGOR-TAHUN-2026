@@ -736,3 +736,15 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
  .topbar h1{font-size:clamp(18px,4.8vw,27px)!important;letter-spacing:-.4px}
  .topbar h1 span{font-size:1.02em!important;white-space:normal}
 }
+
+/* Semua PBT: senarai penuh bilangan sekolah padat menggantikan carta pemutihan */
+.donut-trio .pbt-overall-panel{display:flex;flex-direction:column;min-width:0}
+.donut-trio .pbt-overall-panel .panel-head{flex:none}
+.pbt-overall-list{flex:1;min-height:0;max-height:280px;overflow-y:auto;padding:5px 15px 15px;scrollbar-width:thin;scrollbar-color:#e8b58f #fff5ee}
+.pbt-overall-item{padding:6px 0 7px;border-bottom:1px solid #f4e9dd}
+.pbt-overall-label{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:5px}
+.pbt-overall-name{font-size:10px;color:#263753;font-weight:700;line-height:1.3}
+.pbt-overall-count{font-size:17px;color:#dc3c30;font-weight:900;font-variant-numeric:tabular-nums;flex:none}
+.pbt-overall-track{height:7px;border-radius:12px;background:#f5e9dd;overflow:hidden}
+.pbt-overall-track span{display:block;height:100%;border-radius:12px;min-width:2px}
+.pbt-overall-empty{padding:20px;color:#8d7768;font-size:12px}
