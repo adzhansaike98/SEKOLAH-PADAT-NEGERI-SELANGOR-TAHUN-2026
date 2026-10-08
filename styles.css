@@ -177,3 +177,42 @@ footer strong{color:#d34432}
     width:140px!important;height:140px!important;flex-basis:140px
   }
 }
+
+/* Premium round charts — square wrapper prevents stretched/oval doughnuts */
+.donut-trio .compact-panel .donut-wrap{
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;
+ min-height:235px!important;gap:16px!important;padding:19px 17px 24px!important;
+}
+.donut-trio .premium-donut-visual{
+ position:relative;display:block;flex:0 0 174px!important;width:174px!important;
+ height:174px!important;aspect-ratio:1 / 1;min-width:174px;min-height:174px;
+ border-radius:50%;
+ background:radial-gradient(circle at 35% 26%,rgba(255,255,255,.98),rgba(255,250,244,.5) 60%,rgba(255,221,182,.28));
+ box-shadow:0 13px 18px -12px rgba(88,46,22,.42),inset 0 2px 4px rgba(255,255,255,.8);
+ filter:none!important;
+}
+.donut-trio .premium-donut-visual:after{
+ content:"";position:absolute;pointer-events:none;
+ left:19%;right:19%;height:9px;bottom:-8px;border-radius:50%;
+ background:rgba(102,55,29,.14);filter:blur(7px);
+}
+.donut-trio .premium-donut-visual canvas{
+ display:block!important;position:relative!important;inset:auto!important;
+ width:174px!important;height:174px!important;
+ max-width:174px!important;max-height:174px!important;
+ aspect-ratio:1 / 1!important;flex:none!important;filter:none!important;
+}
+.donut-trio .compact-panel .mini-legend{flex:1 1 0;min-width:0}
+@media(max-width:1320px){
+ .donut-trio .premium-donut-visual{flex-basis:145px!important;width:145px!important;height:145px!important;min-width:145px;min-height:145px}
+ .donut-trio .premium-donut-visual canvas{width:145px!important;height:145px!important;max-width:145px!important;max-height:145px!important}
+ .donut-trio .compact-panel .donut-wrap{gap:10px!important;padding:15px 12px 20px!important}
+}
+@media(max-width:1050px){
+ .donut-trio .premium-donut-visual{flex-basis:174px!important;width:174px!important;height:174px!important;min-width:174px;min-height:174px}
+ .donut-trio .premium-donut-visual canvas{width:174px!important;height:174px!important;max-width:174px!important;max-height:174px!important}
+}
+@media(max-width:480px){
+ .donut-trio .premium-donut-visual{flex-basis:140px!important;width:140px!important;height:140px!important;min-width:140px;min-height:140px}
+ .donut-trio .premium-donut-visual canvas{width:140px!important;height:140px!important;max-width:140px!important;max-height:140px!important}
+}
