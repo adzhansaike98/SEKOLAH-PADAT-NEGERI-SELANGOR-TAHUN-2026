@@ -8,3 +8,71 @@
 .map-boundary-label { background:white; border:1px solid #bfd1df; padding:3px 6px; border-radius:6px; box-shadow:0 2px 9px #0002; font-weight:700; color:#154569; white-space:nowrap; }
 .leaflet-tooltip.boundary-tooltip { font-weight:700; color:#144465; background:#ffffffed; border-radius:8px; border:1px solid #aac5da; padding:5px 9px; }
 @media(max-width:700px){.boundary-toolbar button{margin-left:0}}
+
+
+/* Tema SUO: Selangor Urban Observatory — perubahan visual sahaja, tanpa mengubah seksyen */
+:root{
+  --navy:#172441; --ink:#172441; --blue:#e83b28; --cyan:#f79c15;
+  --red:#d9223d; --green:#23a474; --muted:#6b7385; --line:#e9dfd3;
+  --bg:#fff9f2; --shadow:0 4px 16px rgba(78,55,30,.065);
+}
+body{background:linear-gradient(155deg,#fff,#fff9ef 64%,#fff3df);color:var(--ink)}
+.topbar{
+  background:linear-gradient(105deg,#fff 0%,#fff 61%,#fff3dd 100%);
+  color:#172441; border-bottom:2px solid #f2d6b3; box-shadow:0 3px 14px rgba(156,92,34,.07);
+  padding-top:21px;padding-bottom:21px;position:relative;overflow:hidden;
+}
+.topbar:after{content:"";position:absolute;right:-40px;top:-85px;width:360px;height:230px;pointer-events:none;border-radius:50%;border:21px solid rgba(255,169,45,.10);transform:rotate(-15deg)}
+.brand-icon{background:linear-gradient(145deg,#d71c3b,#ff9516);color:white;border-radius:14px;box-shadow:0 6px 16px #e94a2d28}
+.eyebrow{color:#c74425;letter-spacing:1.4px;font-size:10px}
+h1{color:#172441;font-weight:800}h1 span{color:#d83b2c}
+.topbar p{color:#73798a}
+.year{background:#fff6e8;color:#9a441d;border:1px solid #f2d0af}
+.dot-online{background:#fff3e8;border:1px solid #f4d3b2;color:#b75e27}
+.container{max-width:1670px}
+.filter-panel,.panel,.kpi{background:white;border:1px solid #ecdcc9;border-radius:12px;box-shadow:var(--shadow)}
+.filter-panel{gap:10px;padding:13px;margin-bottom:13px}
+.filter-panel select,.filter-panel input,.table-tools select{border:1px solid #e2d9d0;background:#fff;color:#172441;border-radius:6px}
+.filter-panel select:focus,.filter-panel input:focus{outline:2px solid #f59e0b;outline-offset:1px}
+.btn-primary{background:linear-gradient(100deg,#e22d31,#fa8c14);color:#fff}
+.btn-outline{background:#fff;border:1px solid #c5b7a6;color:#273b57}
+.kpis{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:13px}
+.kpi{border-radius:11px;padding:14px 13px;border-color:#ead9c4;border-top:3px solid #f2a22c}
+.kpi:nth-child(5n+1){border-top-color:#d82746}
+.kpi:nth-child(5n+2){border-top-color:#f18b26}
+.kpi:nth-child(5n+3){border-top-color:#f4be33}
+.kpi:nth-child(5n+4){border-top-color:#27a887}
+.kpi:nth-child(5n){border-top-color:#347ab8}
+.kpi-icon{background:#fff0e0;border-radius:11px;font-size:24px}
+.kpi-label{font-size:11px;color:#415270}.kpi-number{color:#10254b;font-size:27px}
+.panel-head{border-bottom:1px solid #f1e5d9;padding:13px 15px 12px;gap:10px}
+.panel h2{font-size:13px;font-weight:800;color:#d62838;line-height:1.35}
+.panel h2:before{content:"";display:inline-block;width:4px;height:16px;vertical-align:-3px;background:linear-gradient(#e32243,#ff9418);border-radius:3px;margin-right:8px}
+.panel-head p{color:#7b7c82}
+.dashboard-grid{gap:11px}
+.map-box{margin:9px 10px 0;border:1px solid #eedbc7}
+.boundary-toolbar{background:#fff8ee;border-color:#f1e1d1}
+.boundary-toolbar label{color:#5b483d}
+.boundary-toolbar input{accent-color:#e84c26}
+.text-btn,.maplink{color:#da4331}
+.chip{background:#fff2df;color:#bd5a24}
+.chart-box{padding-top:10px}
+.facility-list{padding:9px 13px 14px}
+.facility{border-top:none;border-radius:9px;padding:11px 13px;margin-bottom:8px;align-items:center;font-size:12px;font-weight:650;position:relative;border-left:4px solid var(--fc);background:var(--fbg)}
+.facility strong{font-size:19px;color:var(--fc);font-variant-numeric:tabular-nums}
+.facility:nth-child(1){--fc:#e52d46;--fbg:#fff0f1}
+.facility:nth-child(2){--fc:#f16a21;--fbg:#fff2e9}
+.facility:nth-child(3){--fc:#c89708;--fbg:#fff9dc}
+.facility:nth-child(4){--fc:#28a559;--fbg:#edfaee}
+.facility:nth-child(5){--fc:#0c9eaa;--fbg:#eaf9fa}
+.rankbar{background:#fff0e1}
+.rankbar span{background:linear-gradient(90deg,#df3342,#ff9c19)}
+.rank-row .index{color:#c95f33}
+.detail-card{background:#fff2e5}.detail-card strong{color:#cf492a}
+.detail-card.warning{background:#fff0ef}.detail-card.warning strong{color:#d9223d}
+.detail-card.success{background:#edfaef}.detail-card.success strong{color:#168955}
+th{background:#fff1e2;color:#6a4b37}td{border-bottom-color:#f4ece4}
+.schoolname{color:#b94330}
+footer strong{color:#d34432}
+@media(max-width:1250px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:670px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-number{font-size:21px}.topbar:after{display:none}}
