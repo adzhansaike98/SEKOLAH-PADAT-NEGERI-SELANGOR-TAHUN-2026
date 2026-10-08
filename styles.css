@@ -144,3 +144,36 @@ footer strong{color:#d34432}
   width:136px!important;height:136px!important;
  }
 }
+
+/* Tiga carta donut dalam satu baris, dengan kedalaman 3D seragam */
+.dashboard-grid .donut-trio{
+  grid-column:1 / -1;display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;min-width:0;
+}
+.donut-trio .compact-panel{min-width:0;grid-column:auto;grid-row:auto}
+.donut-trio .compact-panel .donut-wrap{
+  display:flex;justify-content:center;align-items:center;
+  gap:18px;min-height:212px;padding:17px 17px 23px;
+}
+.donut-trio .compact-panel .donut-wrap canvas{
+  display:block;width:150px!important;height:150px!important;
+  flex:0 0 150px;filter:drop-shadow(0 8px 8px rgba(89,46,29,.16))
+}
+.donut-trio .compact-panel .mini-legend{min-width:0;flex:1;font-size:11px}
+.donut-trio .compact-panel .legend-item{
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+  gap:5px 8px;padding:9px 10px;margin:7px 0;
+  border:1px solid #f3dfd0;border-radius:10px;background:#fff;
+}
+.donut-trio .compact-panel .legend-item b{font-size:12px;font-variant-numeric:tabular-nums}
+.donut-trio .compact-panel .panel-head{background:linear-gradient(90deg,#fff3eb,#fffdf9)}
+@media(max-width:1050px){
+  .dashboard-grid .donut-trio{grid-template-columns:1fr}
+  .donut-trio .compact-panel .donut-wrap{justify-content:flex-start}
+}
+@media(max-width:670px){
+  .donut-trio .compact-panel .donut-wrap canvas{
+    width:140px!important;height:140px!important;flex-basis:140px
+  }
+}
