@@ -566,3 +566,33 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
 
 /* Gambar skyline baharu: hanya ikon berlatar telus, tanpa gelombang atau kotak. */
 .topbar:before{background-size:auto 100%!important;background-position:right bottom!important;background-repeat:no-repeat!important}
+
+/* Kemudahan Direkodkan premium infographic */
+.three-summary-row #facilities.facility-list{display:flex;flex-direction:column;gap:11px;padding:14px!important;justify-content:space-evenly}
+.three-summary-row #facilities .facility-premium{
+ display:flex;align-items:center;justify-content:space-between;gap:12px;
+ min-height:68px;margin:0!important;padding:10px 13px!important;
+ border-radius:13px;border:1px solid var(--fborder);border-left:5px solid var(--faccent);
+ background:linear-gradient(110deg,var(--fbg),#fffdfb);
+ box-shadow:0 3px 12px rgba(86,48,31,.055);
+ transition:transform .18s ease,box-shadow .18s ease;
+}
+.three-summary-row #facilities .facility-premium:hover{transform:translateY(-2px);box-shadow:0 7px 17px rgba(86,48,31,.12)}
+.facility-premium .facility-left{display:flex;align-items:center;gap:12px;min-width:0}
+.facility-premium .facility-icon{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;border-radius:13px;font-size:24px;background:#ffffffc9;border:1px solid #ffffffb5;box-shadow:0 3px 8px #3331}
+.facility-premium .facility-text{min-width:0}
+.facility-premium .facility-name{font-size:13px;font-weight:800;color:#1b2f4b;line-height:1.25}
+.facility-premium .facility-subtitle{font-size:10px;font-weight:500;color:#7c8391;margin-top:4px}
+.facility-premium .facility-right{flex:none;text-align:right}
+.facility-premium .facility-value{font-size:clamp(23px,2vw,32px);color:var(--faccent);font-weight:900;letter-spacing:-1px;line-height:1}
+.facility-premium.f-red{--faccent:#e92f4b;--fbg:#fff0f3;--fborder:#f7dce1}
+.facility-premium.f-orange{--faccent:#f16b24;--fbg:#fff2e8;--fborder:#f7e1d2}
+.facility-premium.f-yellow{--faccent:#d4a000;--fbg:#fff9dd;--fborder:#eee5b5}
+.facility-premium.f-green{--faccent:#1fa65b;--fbg:#eefaf0;--fborder:#d6eddf}
+.facility-premium.f-blue{--faccent:#079bad;--fbg:#eaf9fb;--fborder:#d1eff3}
+@media(max-width:750px){
+ .three-summary-row #facilities .facility-premium{min-height:62px;padding:9px 10px!important}
+ .facility-premium .facility-icon{width:42px;height:42px;flex-basis:42px;font-size:21px}
+ .facility-premium .facility-name{font-size:12px}
+ .facility-premium .facility-value{font-size:25px}
+}
