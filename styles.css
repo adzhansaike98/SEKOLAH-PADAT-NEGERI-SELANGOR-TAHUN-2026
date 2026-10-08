@@ -596,3 +596,32 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
  .facility-premium .facility-name{font-size:12px}
  .facility-premium .facility-value{font-size:25px}
 }
+
+/* Kemudahan: ikon XL dan warna lebih hidup */
+.three-summary-row #facilities .facility-premium{
+ min-height:83px!important;padding:11px 14px!important;
+ background:linear-gradient(110deg,var(--fbg) 0%,#fff 100%)!important;
+ border-left-width:6px!important;
+ box-shadow:0 4px 14px rgba(70,45,30,.09)!important;
+}
+.facility-premium .facility-left{gap:15px!important}
+.facility-premium .facility-icon{
+ width:65px!important;height:65px!important;flex:0 0 65px!important;
+ font-size:37px!important;border-radius:17px!important;
+ background:var(--ficonbg)!important;
+ border:2px solid #ffffff!important;
+ box-shadow:0 5px 12px rgba(40,30,30,.12)!important;
+}
+.facility-premium .facility-name{font-size:15px!important}
+.facility-premium .facility-value{font-size:clamp(29px,2.4vw,39px)!important}
+.facility-premium.f-red{--faccent:#eb2348;--fbg:#ffe8ee;--ficonbg:#ffd2dc;--fborder:#f8bdce}
+.facility-premium.f-orange{--faccent:#f26417;--fbg:#ffebda;--ficonbg:#ffd5b5;--fborder:#f6c5a3}
+.facility-premium.f-yellow{--faccent:#c69400;--fbg:#fff4cd;--ficonbg:#ffe49b;--fborder:#f1d984}
+.facility-premium.f-green{--faccent:#149c58;--fbg:#e3f8e9;--ficonbg:#bff0d0;--fborder:#afe3c0}
+.facility-premium.f-blue{--faccent:#078fa9;--fbg:#def6fa;--ficonbg:#b6eaf4;--fborder:#a8dfeb}
+@media(max-width:750px){
+ .three-summary-row #facilities .facility-premium{min-height:73px!important;padding:9px 11px!important}
+ .facility-premium .facility-icon{width:54px!important;height:54px!important;flex-basis:54px!important;font-size:31px!important}
+ .facility-premium .facility-name{font-size:13px!important}
+ .facility-premium .facility-value{font-size:29px!important}
+}
