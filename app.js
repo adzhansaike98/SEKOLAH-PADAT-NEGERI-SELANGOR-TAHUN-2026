@@ -159,7 +159,7 @@ function renderFacilities(){
  $('facilities').innerHTML=items.map(([label,key,icon,color])=>
   `<div class="facility facility-premium f-${color}">
    <div class="facility-left"><span class="facility-icon" aria-hidden="true">${icon}</span>
-    <div class="facility-text"><div class="facility-name">${label}</div><div class="facility-subtitle">Kemudahan direkodkan</div></div>
+    <div class="facility-text"><div class="facility-name">${label}</div></div>
    </div><div class="facility-right"><strong class="facility-value">${fmt(sum(filtered,key))}</strong></div>
   </div>`
  ).join('');
