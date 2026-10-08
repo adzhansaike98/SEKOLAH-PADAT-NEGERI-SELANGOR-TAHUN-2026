@@ -505,3 +505,26 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
  .topbar .header-actions{margin-right:0;flex-wrap:wrap}
  .topbar:before{width:52%;opacity:.35}
 }
+
+/* Skyline kanan: aset terasing, tidak dilindungi butang header */
+.topbar{background:#fffdf9!important;min-height:116px}
+.topbar:before{
+ content:""!important;display:block!important;position:absolute!important;
+ top:0!important;bottom:0!important;right:0!important;
+ width:290px!important;max-width:30vw!important;
+ background-image:url("https://raw.githubusercontent.com/geospatialpms-glitch/Tapak-Perkuburan-Negeri-Selangor/main/header-right-preview.webp")!important;
+ background-repeat:no-repeat!important;background-position:right center!important;
+ background-size:contain!important;opacity:1!important;pointer-events:none!important;z-index:0!important;
+}
+.topbar .header-actions{
+ margin-right:clamp(240px,30vw,330px)!important;z-index:2!important;flex-shrink:0;
+}
+.topbar .brand{z-index:2!important}
+@media(max-width:1250px){
+ .topbar .header-actions{margin-right:0!important}
+ .topbar:before{opacity:.32!important;width:260px!important}
+}
+@media(max-width:760px){
+ .topbar:before{opacity:.18!important;width:190px!important}
+ .topbar .header-actions{margin-right:0!important}
+}
