@@ -415,3 +415,30 @@ footer strong{color:#d34432}
  .three-summary-row .detail-panel .detail-card strong{font-size:35px!important}
  .three-summary-row .detail-panel .detail-card small{font-size:12px!important}
 }
+
+/* Larger figures, labels and icons — Ringkasan Data Penting only */
+.three-summary-row .detail-panel .detail-card{
+ padding:24px 22px 20px!important;gap:10px!important;
+}
+.three-summary-row .detail-panel .summary-stat-icon{
+ width:64px!important;height:64px!important;right:16px;top:14px;
+ font-size:37px!important;border-radius:17px!important;
+}
+.three-summary-row .detail-panel .detail-card strong{
+ font-size:clamp(43px,3.8vw,64px)!important;
+ line-height:1!important;letter-spacing:-1.6px;
+ margin:22px 0 4px!important;
+}
+.three-summary-row .detail-panel .detail-card small{
+ font-size:clamp(15px,1.2vw,19px)!important;
+ line-height:1.4!important;font-weight:750!important;
+ padding-right:2px;
+}
+@media(max-width:750px){
+ .three-summary-row .detail-panel .detail-card{padding:18px 14px!important;min-height:168px}
+ .three-summary-row .detail-panel .summary-stat-icon{
+  width:48px!important;height:48px!important;font-size:28px!important;right:11px;top:11px
+ }
+ .three-summary-row .detail-panel .detail-card strong{font-size:43px!important;margin:19px 0 2px!important}
+ .three-summary-row .detail-panel .detail-card small{font-size:14px!important}
+}
