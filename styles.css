@@ -637,3 +637,30 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
  .three-summary-row #facilities .facility-premium{min-height:83px!important}
  .three-summary-row #facilities .facility-icon{width:64px!important;height:64px!important;flex-basis:64px!important;font-size:40px!important}
 }
+
+/* Top 5 PBT: logo rasmi lebih besar serta angka ranking dan jumlah menonjol */
+.three-summary-row .pbt-rank-card{
+ grid-template-columns:36px 66px minmax(0,1fr) 60px!important;
+ gap:10px!important;min-height:91px!important;padding:10px 12px!important;
+}
+.three-summary-row .pbt-logo-circle{
+ width:64px!important;height:64px!important;border-radius:50%;
+ box-shadow:0 3px 9px rgba(92,54,29,.13);
+}
+.three-summary-row .pbt-logo-circle img{padding:3px!important;object-fit:contain!important}
+.three-summary-row .pbt-rank-card .rank-order{
+ width:35px!important;height:35px!important;font-size:16px!important;
+}
+.three-summary-row .pbt-rank-total{
+ font-size:29px!important;font-weight:900!important;line-height:1.05;
+}
+.three-summary-row .pbt-rank-total small{font-size:10px!important;margin-top:4px}
+@media(max-width:750px){
+ .three-summary-row .pbt-rank-card{
+  grid-template-columns:31px 55px minmax(0,1fr) 55px!important;
+  gap:8px!important;min-height:82px!important;padding:8px!important;
+ }
+ .three-summary-row .pbt-logo-circle{width:54px!important;height:54px!important}
+ .three-summary-row .pbt-rank-card .rank-order{width:30px!important;height:30px!important;font-size:14px!important}
+ .three-summary-row .pbt-rank-total{font-size:25px!important}
+}
