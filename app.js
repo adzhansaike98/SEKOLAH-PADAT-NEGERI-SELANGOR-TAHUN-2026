@@ -56,14 +56,14 @@ function renderMap(){if(group)map.removeLayer(group);group=showCluster?L.markerC
  iconCreateFunction(cluster){
   const count=cluster.getChildCount();
   const level=count>=15?'large':count>=6?'medium':'small';
-  const size=count>=15?54:count>=6?48:43;
+  const size=count>=15?48:count>=6?43:38;
   return L.divIcon({className:'school-cluster school-cluster-'+level,
    html:`<span class="school-cluster-inner"><span class="school-cluster-count">${count}</span></span>`,
    iconSize:[size,size],iconAnchor:[size/2,size/2]});
  }
 }):L.layerGroup();for(const r of filtered.filter(coords)){
  const isSMK=r['SK/SMK']==='SMK';
- const icon=L.divIcon({className:'school-map-icon',html:`<span class="school-pin ${isSMK?'school-pin-smk':'school-pin-sk'}"><span class="school-pin-symbol" aria-hidden="true">${isSMK?'🎓':'🏫'}</span></span>`,iconSize:[34,40],iconAnchor:[17,39],popupAnchor:[0,-35]}); const marker=L.marker([r.latitude,r.longitude],{icon});
+ const icon=L.divIcon({className:'school-map-icon',html:`<span class="school-pin ${isSMK?'school-pin-smk':'school-pin-sk'}"><span class="school-pin-symbol" aria-hidden="true">${isSMK?'🎓':'🏫'}</span></span>`,iconSize:[29,34],iconAnchor:[14.5,33],popupAnchor:[0,-30]}); const marker=L.marker([r.latitude,r.longitude],{icon});
  const google=`https://www.google.com/maps?q=${encodeURIComponent(r.latitude+','+r.longitude)}`;
  const detail=`<strong>${safe(r.nama||'Nama tidak direkod')}</strong><br/>Daerah: ${safe(r.DAERAH)}<br/>Jenis: ${safe(r['SK/SMK'])}<br/>PBT: ${safe(r.PBT)}<br/>Status Geran: ${safe(r['Status Geran'])}<br/>Pemutihan: ${safe(r.Pemutihan)}<br/>Latitude: ${safe(r.latitude)}<br/>Longitude: ${safe(r.longitude)}<br/><a target="_blank" rel="noopener noreferrer" href="${google}">Buka Google Maps ↗</a>`;
  marker.bindPopup(detail);group.addLayer(marker);
