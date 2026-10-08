@@ -252,3 +252,19 @@ footer strong{color:#d34432}
  .district-panel .scope-list li{font-size:10.5px;line-height:1.48}
  .district-panel .district-chart-box{height:300px;min-height:300px}
 }
+
+/* Samakan paras kotak peta dan bar chart pada paparan desktop */
+@media(min-width:1251px){
+ .dashboard-grid>.map-panel,
+ .dashboard-grid>.district-panel{grid-row:span 2;align-self:stretch}
+ .dashboard-grid>.district-panel{display:flex;flex-direction:column;height:100%;min-height:0}
+ .dashboard-grid>.district-panel .project-scope{flex:none}
+ .dashboard-grid>.district-panel .district-chart-box{
+  flex:1 1 auto;height:auto;min-height:300px;position:relative;
+  margin-top:0;margin-bottom:0;
+ }
+ .dashboard-grid>.district-panel .district-chart-box canvas{
+  width:100%!important;height:100%!important;
+  max-height:none!important;
+ }
+}
