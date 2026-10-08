@@ -340,3 +340,47 @@ footer strong{color:#d34432}
  .pbt-summary-row>.rank-panel,.pbt-summary-row>.detail-panel{min-height:auto;height:auto}
  .pbt-summary-row>.detail-panel .detail-cards{grid-template-rows:auto}
 }
+
+/* Kemudahan, Top 5 PBT dan Ringkasan Data Penting — tiga kotak sebaris */
+.dashboard-grid>.three-summary-row{
+ grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+ align-items:stretch;gap:14px;min-width:0;
+}
+.three-summary-row>.compact-panel,
+.three-summary-row>.pbt-summary-row>.rank-panel,
+.three-summary-row>.pbt-summary-row>.detail-panel{
+ grid-column:auto!important;grid-row:auto!important;
+ min-width:0;min-height:465px;height:100%;
+}
+.three-summary-row>.pbt-summary-row{
+ display:contents;
+}
+.three-summary-row>.compact-panel{display:flex;flex-direction:column}
+.three-summary-row>.compact-panel #facilities{
+ flex:1;display:flex;flex-direction:column;justify-content:space-evenly;
+}
+.three-summary-row>.compact-panel .facility{margin-bottom:0}
+.three-summary-row>.rank-panel{display:flex;flex-direction:column}
+.three-summary-row>.rank-panel #pbtRanking{flex:1;display:flex;flex-direction:column}
+.three-summary-row>.rank-panel .pbt-rank-list{
+ flex:1;grid-template-rows:repeat(5,minmax(62px,1fr));
+}
+.three-summary-row>.detail-panel{display:flex;flex-direction:column}
+.three-summary-row>.detail-panel .detail-cards{
+ flex:1;align-content:stretch;grid-template-rows:repeat(2,minmax(0,1fr));
+}
+.three-summary-row>.detail-panel .detail-card{
+ display:flex;flex-direction:column;justify-content:center;
+}
+@media(max-width:1250px){
+ .dashboard-grid>.three-summary-row{grid-template-columns:1fr 1fr}
+ .three-summary-row>.detail-panel{grid-column:1/-1!important}
+}
+@media(max-width:750px){
+ .dashboard-grid>.three-summary-row{grid-template-columns:1fr}
+ .three-summary-row>.detail-panel{grid-column:auto!important}
+ .three-summary-row>.compact-panel,
+ .three-summary-row>.rank-panel,
+ .three-summary-row>.detail-panel{min-height:0;height:auto}
+ .three-summary-row>.compact-panel #facilities{gap:9px}
+}
