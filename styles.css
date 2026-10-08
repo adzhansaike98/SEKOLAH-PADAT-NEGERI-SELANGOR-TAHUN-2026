@@ -468,3 +468,8 @@ html{scroll-behavior:smooth;scroll-padding-top:16px}
 .topbar .suo-header-logo{display:block;flex:0 0 auto;width:88px;height:88px;object-fit:contain;background:#fff;border-radius:5px}
 .topbar .brand>div{min-width:0}
 @media(max-width:670px){.topbar .suo-header-logo{width:58px;height:58px}.topbar .brand{gap:10px}}
+
+/* Header: logo SUO bermula dari hujung kiri skrin */
+.topbar{padding-left:12px!important;padding-right:24px!important}
+.topbar .brand{margin-left:0!important;justify-content:flex-start!important}
+@media(max-width:670px){.topbar{padding-left:8px!important;padding-right:10px!important}}
